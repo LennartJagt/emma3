@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @invoice.date %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @invoice.number %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @invoice.amount %>
+</p>
+
+<p>
+  <strong>Vat:</strong>
+  <%= @invoice.vat %>
+</p>
+
+<p>
+	<strong>invoicedetails:</strong>
+<table>
+  <thead>
+    <tr>
+      <th>Naam product</th>
+      <th>Bedrag</th>
+      <th>BTW</th>
+      <th>Totaal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoice.invoicedetails.each do |invoicedetail| %>
+      <tr>
+        <td><%= invoicedetail.name %></td>
+        <td><%= invoicedetail.price %></td>
+        <td><%= invoicedetail.vat %></td>
+        <td><%= invoicedetail.vat + invoicedetail.price  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</p>
+
+
+
+
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>

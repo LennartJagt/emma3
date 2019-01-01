@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  vetId: MyString
+  price: 
+  vatpercentage: 
+  regminequser: MyString
+  quantity: 
+  vat: 
+  name: MyString
+
+two:
+  date: MyString
+  vetId: MyString
+  price: 
+  vatpercentage: 
+  regminequser: MyString
+  quantity: 
+  vat: 
+  name: MyString

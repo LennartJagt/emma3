@@ -1,0 +1,80 @@
+<%= form_with(model: invoice, local: true) do |form| %>
+  <% if invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vat %>
+    <%= form.text_field :vat %>
+  </div>
+
+<%= form.fields_for :invoicedetails do |builder| %>
+    <div class="field">
+      <%= builder.label :date %>
+      <%= builder.text_field :date %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :vetId %>
+      <%= builder.text_field :vetId %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :price %>
+      <%= builder.text_field :price %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :vatpercentage %>
+      <%= builder.text_field :vatpercentage %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :regminequser %>
+      <%= builder.text_field :regminequser %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :quantity %>
+      <%= builder.text_field :quantity %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :vat %>
+      <%= builder.text_field :vat %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :name %>
+      <%= builder.text_field :name %>
+    </div>
+ <% end %> 
+    
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

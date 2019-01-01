@@ -1,0 +1,62 @@
+<%= form_with(model: invoicedetail, local: true) do |form| %>
+  <% if invoicedetail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoicedetail.errors.count, "error") %> prohibited this invoicedetail from being saved:</h2>
+
+      <ul>
+      <% invoicedetail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vetId %>
+    <%= form.text_field :vetId %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vatpercentage %>
+    <%= form.text_field :vatpercentage %>
+  </div>
+
+  <div class="field">
+    <%= form.label :regminequser %>
+    <%= form.text_field :regminequser %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vat %>
+    <%= form.text_field :vat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :invoice %>
+    <%= form.text_field :invoice %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
