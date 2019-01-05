@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @client.date %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @client.birthdate %>
+</p>
+
+<p>
+  <strong>Isclientof:</strong>
+  <%= @client.isclientof %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @client.active %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @client.lastname %>
+</p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @client.firstname %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @client.title %>
+</p>
+
+<p>
+  <strong>Callname:</strong>
+  <%= @client.callname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @client.email %>
+</p>
+
+<p>
+  <strong>Warning:</strong>
+  <%= @client.warning %>
+</p>
+
+
+<h1>Facturen</h1>
+
+<table>
+  <thead>
+	
+    <tr>
+	  <th>Factuurdatum</th>
+	  <th>Factuurnummer</th>
+	  <th>Bedrag ex BTW</th>
+      <th>BTW</th>
+      <th>Totaal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <% @client.invoices.each do |invoice| %>
+     <tr>
+       <td><%= invoice.date %></td>
+       <td><%= invoice.number %></td>
+       <td><%= invoice.amount %></td>
+	   <td><%= invoice.vat %></td>
+       <td><%= invoice.vat + invoice.amount  %></td>
+     </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>
