@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clients
   resources :invoicedetails
   resources :invoices
   root "invoices#index"
