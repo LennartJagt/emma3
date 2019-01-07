@@ -4,14 +4,18 @@
 
 <table>
   <thead>
-	<tr>Totaal aantal cliënten:<%=@clients.count%>  </tr>
+	<tr>Totaal aantal cliënten:<%= @clients.count %></tr>
 </br>
 
-    <tr>Aantal actieve cliënten 2018:<%= @active_client_invoices.count %>
-		 
+
+<% @active_year_hash.each do |key, val| %>
+<%= "#{key} had #{val} actieve cliënten"%>
+</br>
+<% end %>
+</br>
+	
 		
-		
-		</tr>	
+	</tr>	
     <tr>
 	  <th>Titel</th>
 	  <th>Initialen</th>

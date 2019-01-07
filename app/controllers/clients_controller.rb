@@ -4,16 +4,23 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
-    @active_client_invoices = []
+    @clients = Client.limit(10).all 
+    @jaartal = 2010
+    @jaartallen = []
+    @active_client_invoices_year =[]
+    @active_year_hash = {}
     
-    @jaartal = "2018"
-    @active_client_invoices = Invoice.where(date:/2018/).distinct(:client_id)
+    
+    while @jaartal <= 2018 do  
+      @active_client_invoices = Invoice.where(date:/#{@jaartal.to_s}/).distinct(:client_id)
+      @active_client_invoices_year = @active_client_invoices.count
+      @active_year_hash[@jaartal] = @active_client_invoices_year
+      @jaartal = @jaartal + 1
+    end
   end
   
   
-  
-  # GET /clients/1
+    # GET /clients/1
   # GET /clients/1.json
   def show
   end
