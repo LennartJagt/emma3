@@ -1,0 +1,18 @@
+<h1>Van welke jaren wil je de actieve cliënten zien?</h1>
+
+
+<%= form_tag active_clients_path do %>
+<table>
+  <tr>
+	  <th>&nbsp;</th>
+	  <th>Jaartal</th>
+  <tr>	  
+  <% @jaartallen.each do |jaartal| %>
+    <tr>
+      <td><%= check_box_tag 'chosen_jaartallen[]', jaartal %></td> 	  
+      <td><%= jaartal %></td>
+    </tr>	
+  <% end%>
+  
+<% end %>
+<%= submit_tag "Verzend gekozen jaartallen" %> 

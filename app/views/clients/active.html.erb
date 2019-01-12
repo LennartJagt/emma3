@@ -1,0 +1,12 @@
+<h1>Active cliënten per jaar!</h1>
+
+
+</br>
+<% @active_year_hash.each do |key, val| %>
+<strong><%="#{key}" %></strong> &nbsp <%= "had #{val} actieve cliënten"%>
+</br>
+<% end %>
+</br>
+
+<%= link_to 'Opnieuw kiezen', change_clients_path %>
+
