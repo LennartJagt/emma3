@@ -5,6 +5,8 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices = Invoice.limit(200).all
+    sec = ('1379844601000'.to_f / 1000).to_s
+    Date.strptime(sec, '%s')
   end
 
   # GET /invoices/1

@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :clients do
     collection do
       get '/change', to: 'clients#change'  
-      post '/active', to: 'clients#active'    
+      post '/active', to: 'clients#active' 
+      get '/newclient', to:'clients#newclients'   
     end
 end    
   resources :invoicedetails

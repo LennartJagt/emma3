@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.limit(10).all 
+    @clients = Client.limit(100).all 
     @jaartal = 2010 
     @active_client_invoices_year =[]
     @active_year_hash = {}
@@ -24,8 +24,21 @@ class ClientsController < ApplicationController
      @active_client_invoices = Invoice.where(date:/#{jaartal.to_s}/).distinct(:client_id) 
      @amount_of_active_clients = @active_client_invoices.count
      @active_year_hash[jaartal] = @amount_of_active_clients
-   end     
+   end      
   end
+  
+  def newclients
+    @jaartal_nieuw = 2010
+    @new_client_hash = {}
+    while @jaartal_nieuw <= 2018 do
+      active_clients_this_year = Invoice.where(date:/#{@jaartal_nieuw.to_s}/).distinct(:client_id) 
+      active_clients_last_year = Invoice.where(date:/#{(@jaartal_nieuw - 1).to_s}/).distinct(:client_id)
+      @new_clients_array = active_clients_this_year - active_clients_last_year 
+      @new_clients = @new_clients_array.count
+      @new_client_hash[@jaartal_nieuw] = @new_clients
+      @jaartal_nieuw = @jaartal_nieuw + 1
+    end
+  end 
   
   def change
     @jaartallen = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]

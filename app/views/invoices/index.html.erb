@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+	  <th>Created at</th>	
       <th>Date</th>
       <th>Number</th>
       <th>Amount</th>
@@ -16,6 +17,8 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
+		<td><% sec = (invoice.createtimestamp.to_f / 1000).to_s %>
+			<%= Date.strptime(sec, '%s')%></td> 
         <td><%= invoice.date %></td>
         <td><%= invoice.number %></td>
         <td><%= invoice.amount %></td>
