@@ -1,7 +1,47 @@
-<h1>Nieuwe cliënten</h1>
+<h1>Activiteit cliënten</h1>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+}
 
-<% @new_client_hash.each do |key, val| %>
-<%= "#{key} had #{val} nieuwe cliënten"%>
-</br>
-<% end %>
-</br>
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+
+<table id="customers">
+	<th></th>
+	<th>Aantal actieve cliënten</th>
+	<th>Aantal nieuwe cliënten</th>
+	<th>Aantal verloren cliënten</th>
+	<th>Groei aan cliënten</th>
+	<% @jaartallen.each do |jaartal| %>
+	
+	<tr>
+	<td><%=jaartal%></td>
+	<td><%=@active_client_hash[jaartal]%></td> 
+	<td><%=@new_client_hash[jaartal]%></td>
+	<td><%=@lost_client_hash[jaartal]%></td>
+	<td><%=@client_growth_hash[jaartal]%></td>
+</tr>
+	<%end%>
+
+</table>		
+
+

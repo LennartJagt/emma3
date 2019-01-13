@@ -30,18 +30,30 @@ class ClientsController < ApplicationController
   def newclients
     @jaartal_nieuw = 2010
     @new_client_hash = {}
+    @lost_client_hash = {}
+    @client_growth_hash ={}
+    @jaartallen = Array.new
+    @active_client_hash ={}
     while @jaartal_nieuw <= 2018 do
-      active_clients_this_year = Invoice.where(date:/#{@jaartal_nieuw.to_s}/).distinct(:client_id) 
-      active_clients_last_year = Invoice.where(date:/#{(@jaartal_nieuw - 1).to_s}/).distinct(:client_id)
-      @new_clients_array = active_clients_this_year - active_clients_last_year 
+      @active_clients_this_year = Invoice.where(date:/#{@jaartal_nieuw.to_s}/).distinct(:client_id) 
+      @active_clients_last_year = Invoice.where(date:/#{(@jaartal_nieuw - 1).to_s}/).distinct(:client_id)
+      @active_client_hash[@jaartal_nieuw] = @active_clients_this_year.count
+      @new_clients_array = @active_clients_this_year - @active_clients_last_year 
+      @client_growth = (@active_clients_this_year.count - @active_clients_last_year.count)
+      @client_growth_hash [@jaartal_nieuw] = @client_growth
       @new_clients = @new_clients_array.count
       @new_client_hash[@jaartal_nieuw] = @new_clients
+      @lost_clients = @new_clients - @client_growth
+      @lost_client_hash[@jaartal_nieuw] = @lost_clients
+      @jaartallen << @jaartal_nieuw
       @jaartal_nieuw = @jaartal_nieuw + 1
     end
+    
+    
   end 
   
   def change
-    @jaartallen = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+    @jaartallen = [*2010..2018]
   end
   
     # GET /clients/1
