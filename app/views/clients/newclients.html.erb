@@ -1,47 +1,44 @@
 <h1>Activiteit cliënten</h1>
-<style>
-#customers {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 60%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-</style>
 
 
-<table id="customers">
-	<th></th>
+
+<table class="table">
+	<thead class="thead-dark">
+    <th>Jaar</th>
 	<th>Aantal actieve cliënten</th>
 	<th>Aantal nieuwe cliënten</th>
 	<th>Aantal verloren cliënten</th>
 	<th>Groei aan cliënten</th>
+	<th>Aantal facturen</th>
+	<th>Transacties/klant/jaar</th>
+	<th>Omzet/klant/jaar</th>
+	<th>Jaaromzet</th>
 	<% @jaartallen.each do |jaartal| %>
 	
-	<tr>
+	<tr class="table_primary">
 	<td><%=jaartal%></td>
 	<td><%=@active_client_hash[jaartal]%></td> 
 	<td><%=@new_client_hash[jaartal]%></td>
 	<td><%=@lost_client_hash[jaartal]%></td>
 	<td><%=@client_growth_hash[jaartal]%></td>
+	<td><%=@number_of_invoices_hash[jaartal]%></td>
+	<td><%=(@number_of_invoices_hash[jaartal].to_f/@active_client_hash[jaartal].to_f).round(2)%></td>
+	<td><%=(@total_revenue_hash[jaartal].to_f/@active_client_hash[jaartal].to_f).round(2) %></td>
+	<td><%=@total_revenue_hash[jaartal].round(2)%></td>	
 </tr>
 	<%end%>
 
-</table>		
+</table>	
+<% if false%>
+<% total_amount = 0 %>
+<% @invoice_amounts.sort_by{|e| e[:number]}.each do |invoice|%>
+
+<%= invoice.number %> <%=invoice.amount%>
+<% total_amount = total_amount + invoice.amount%>
+<%= total_amount%>
+</br>
+<%end%>
+<%end%>
+
 
 

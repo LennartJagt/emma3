@@ -28,23 +28,44 @@ class ClientsController < ApplicationController
   end
   
   def newclients
-    @jaartal_nieuw = 2010
     @new_client_hash = {}
     @lost_client_hash = {}
     @client_growth_hash ={}
     @jaartallen = Array.new
     @active_client_hash ={}
-    while @jaartal_nieuw <= 2018 do
-      @active_clients_this_year = Invoice.where(date:/#{@jaartal_nieuw.to_s}/).distinct(:client_id) 
-      @active_clients_last_year = Invoice.where(date:/#{(@jaartal_nieuw - 1).to_s}/).distinct(:client_id)
+    @number_of_invoices_hash={}
+    @total_revenue_hash={}
+    
+    for @jaartal_nieuw in 2010..2018 do
+      
+      begin_this_year = 1262304000000+((@jaartal_nieuw-2010) * 31556926000)
+      end_this_year = 1293839999000+((@jaartal_nieuw - 2010) * 31556926000)
+      one_year = 31556926000
+      @active_clients_this_year = Invoice.where(createtimestamp: begin_this_year..end_this_year ).where(purchaseinvoice: false).distinct(:client_id) 
+      @active_clients_last_year = Invoice.where(createtimestamp: (begin_this_year - one_year)..(end_this_year - one_year)).where(purchaseinvoice: false).distinct(:client_id)
       @active_client_hash[@jaartal_nieuw] = @active_clients_this_year.count
+      
+      @invoice_amounts = Invoice.where(createtimestamp: begin_this_year..end_this_year).where(purchaseinvoice: false).sum(:amount)
+      @invoice_amounts_vat = Invoice.where(createtimestamp: begin_this_year..end_this_year).where(purchaseinvoice: false).sum(:vat)
+      @total_revenue = @invoice_amounts - @invoice_amounts_vat
+      @total_revenue_hash[@jaartal_nieuw]= @total_revenue
+      
+      
+      
+      @number_of_invoices = Invoice.where(date:/#{@jaartal_nieuw.to_s}/).count
+      @number_of_invoices_hash[@jaartal_nieuw] = @number_of_invoices
+      
+            
       @new_clients_array = @active_clients_this_year - @active_clients_last_year 
-      @client_growth = (@active_clients_this_year.count - @active_clients_last_year.count)
-      @client_growth_hash [@jaartal_nieuw] = @client_growth
       @new_clients = @new_clients_array.count
       @new_client_hash[@jaartal_nieuw] = @new_clients
+      
+      @client_growth = (@active_clients_this_year.count - @active_clients_last_year.count)
+      @client_growth_hash [@jaartal_nieuw] = @client_growth
+      
       @lost_clients = @new_clients - @client_growth
       @lost_client_hash[@jaartal_nieuw] = @lost_clients
+      
       @jaartallen << @jaartal_nieuw
       @jaartal_nieuw = @jaartal_nieuw + 1
     end
