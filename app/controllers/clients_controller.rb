@@ -51,8 +51,7 @@ class ClientsController < ApplicationController
       @total_revenue_hash[@jaartal_nieuw]= @total_revenue
       
       
-      
-      @number_of_invoices = Invoice.where(date:/#{@jaartal_nieuw.to_s}/).count
+      @number_of_invoices = Invoice.where(createtimestamp: begin_this_year..end_this_year).count
       @number_of_invoices_hash[@jaartal_nieuw] = @number_of_invoices
       
             

@@ -29,6 +29,7 @@
       <th>Bedrag</th>
       <th>BTW</th>
       <th>Totaal</th>
+	  <th>Gebruiker</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -40,6 +41,7 @@
         <td><%= invoicedetail.price %></td>
         <td><%= invoicedetail.vat %></td>
         <td><%= invoicedetail.vat + invoicedetail.price  %></td>
+		<td><%= invoicedetail.regminequser %>
       </tr>
     <% end %>
   </tbody>

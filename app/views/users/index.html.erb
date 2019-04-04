@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gebruikers</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Voornaam</th>
+	  <th>Achternaam</th>
+	  <th>Code</th>
+	  <th>Gebruikersnaam</th>
+    </tr>	
+   </thead>
+   
+   <tbody>
+   <% @users.each do |user| %>
+     <tr>
+       <td><%= user.firstname %></td>
+       <td><%= user.lastname %></td>
+	   <td><%= user.shortcode %></td>
+       <td><%= user.username %></td>
+	   <td><%= link_to 'Show', user %></td>
+	 </tr>
+	 <%end%>
+	</tbody>
+</table>	 		 	

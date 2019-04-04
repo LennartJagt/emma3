@@ -1,0 +1,17 @@
+<h1>Overzicht gebruikers ATF</h1>
+
+<table class="table table-hover">
+	<thead class="thead-dark">
+	  <th>Gebruiker</th>
+	  <th>ATF</th>
+		
+	 <tr class="table_primary">
+<tbody>
+	<% @users.each do |user|%>
+	<tr class="table_primary">
+	<td><%= user.firstname %></td>
+	<td><%=@user_atf_hash [user]%></td>	
+	</tr>
+</tbody>		
+	<%end%>
+</table>

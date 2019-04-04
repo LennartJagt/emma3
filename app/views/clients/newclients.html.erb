@@ -12,7 +12,9 @@
 	<th>Aantal facturen</th>
 	<th>Transacties/klant/jaar</th>
 	<th>Omzet/klant/jaar</th>
+	<th>ATF</th>
 	<th>Jaaromzet</th>
+	
 	<% @jaartallen.each do |jaartal| %>
 	
 	<tr class="table_primary">
@@ -24,6 +26,7 @@
 	<td><%=@number_of_invoices_hash[jaartal]%></td>
 	<td><%=(@number_of_invoices_hash[jaartal].to_f/@active_client_hash[jaartal].to_f).round(2)%></td>
 	<td><%=(@total_revenue_hash[jaartal].to_f/@active_client_hash[jaartal].to_f).round(2) %></td>
+	<td><%=(@total_revenue_hash[jaartal].to_f/@number_of_invoices_hash[jaartal]).round(2)%>
 	<td><%=@total_revenue_hash[jaartal].round(2)%></td>	
 </tr>
 	<%end%>

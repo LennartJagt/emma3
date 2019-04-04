@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Voornaam:</strong>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <strong>Achternaam:</strong>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @user.shortcode %>
+</p>
+
+<p>
+  <strong>Gebruikersnaam</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+	<strong>invoicedetails:</strong>
+<table>
+  <thead>
+    <tr>
+      <th>Naam product</th>
+      <th>Bedrag</th>
+      <th>BTW</th>
+      <th>Totaal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<h1>Aantal factuurregels:</h1>
+<h1><%= @total_invoicedetails_user%></h1>
+<h1>Totale omzet gebruiker</h1>
+<h1><%= @total_revenue_user.round(2) %>
+</br>
+<h1>Aantal facturen:</h1>
+<h1><%= @invoices_user %></h1>
+<h1>ATF</h1>
+<h1><%=@atf_user.round(2)%>
+		
+  <tbody>
+	<% if false %>  
+    <% @user.invoicedetails.each do |invoicedetail| %>
+      <tr>
+        <td><%= invoicedetail.name %></td>
+        <td><%= invoicedetail.price %></td>
+        <td><%= invoicedetail.vat %></td>
+        <td><%= invoicedetail.vat + invoicedetail.price  %></td>
+      </tr>
+    <% end %>
+	<%end%>
+  </tbody>
+</table>
+</p>

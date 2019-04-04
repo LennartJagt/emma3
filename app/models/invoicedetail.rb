@@ -9,5 +9,7 @@ class Invoicedetail
   field :quantity, type: BigDecimal
   field :vat, type: BigDecimal
   field :name, type: String
+  field "ref@Invoice@invoicedetail", as: :invoice_id
   belongs_to :invoice, foreign_key: "ref@Invoice@invoicedetail", primary_key: "_id"
+  belongs_to :user, foreign_key: "regminequser", primary_key: "_id"
 end
